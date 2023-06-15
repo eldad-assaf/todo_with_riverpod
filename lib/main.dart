@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'features/todo/pages/home_page.dart';
+import 'package:todo_with_riverpod/common/utils/constants.dart';
+import 'package:todo_with_riverpod/features/onboarding/pages/onboarding.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -22,10 +23,13 @@ class MyApp extends StatelessWidget {
           title: 'Todo With Riverpod!!!',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              primarySwatch: Colors.blue,
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
-          home: const HomePage(),
+            scaffoldBackgroundColor: Appconst.kBkDark,
+            primarySwatch: Colors.blue,
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          ),
+          themeMode: ThemeMode.dark,
+          home: const Onboarding(),
         );
       },
     );
