@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_otn_btn.dart';
+import 'package:todo_with_riverpod/features/auth/pages/login_page.dart';
 
 import '../../../common/widgets/hieght_spacer.dart';
 
@@ -32,7 +33,7 @@ class PageTwo extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginPage(),
+                    builder: (context) => const LoginPage(),
                   ));
             },
           )
