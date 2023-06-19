@@ -4,6 +4,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_text_field.dart';
+import 'package:todo_with_riverpod/common/widgets/expansion_tile.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
@@ -21,6 +22,7 @@ class _HomePageState extends ConsumerState<HomePage>
   final TextEditingController search = TextEditingController();
   late final TabController tabController =
       TabController(length: 2, vsync: this);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,8 +155,31 @@ class _HomePageState extends ConsumerState<HomePage>
                 width: Appconst.kWidth,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(Appconst.kRadius),
+                  child: TabBarView(
+                    controller: tabController,
+                    children: [
+                      Container(
+                        color: Appconst.kBkLight,
+                        height: Appconst.kHeight * 0.3,
+                      ),
+                      Container(
+                        color: Appconst.kGreen,
+                        height: Appconst.kHeight * 0.3,
+                      )
+                    ],
+                  ),
                 ),
-              )
+              ),
+              const HeightSpacer(height: 20),
+              const XpansionTile(
+                  text: "Tommorow's Task",
+                  text2: "Tommorow's tasks are shown here",
+                  children: []),
+              const HeightSpacer(height: 20),
+              const XpansionTile(
+                  text: "Tommorow's Task",
+                  text2: "Tommorow's tasks are shown here",
+                  children: []),
             ],
           ),
         ),
