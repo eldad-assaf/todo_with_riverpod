@@ -7,6 +7,7 @@ import 'package:todo_with_riverpod/common/widgets/custom_otn_btn.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
+import 'package:todo_with_riverpod/features/auth/pages/otp_page.dart';
 
 import '../../../common/widgets/custom_text_field.dart';
 
@@ -98,7 +99,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => OtpPage(),
+                      builder: (context) => const OtpPage(),
                     )),
                 width: Appconst.kWidth * 0.9,
                 height: Appconst.kHeight * 0.075,
