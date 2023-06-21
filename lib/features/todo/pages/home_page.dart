@@ -9,6 +9,7 @@ import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
 import 'package:todo_with_riverpod/common/widgets/width_spacer.dart';
+import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -161,6 +162,14 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         color: Appconst.kBkLight,
                         height: Appconst.kHeight * 0.3,
+                        child: ListView(
+                          children: const [
+                            TodoTile(
+                              start: "03:00",
+                              end: "05:00",
+                            )
+                          ],
+                        ),
                       ),
                       Container(
                         color: Appconst.kGreen,
@@ -172,14 +181,17 @@ class _HomePageState extends ConsumerState<HomePage>
               ),
               const HeightSpacer(height: 20),
               const XpansionTile(
-                  text: "Tommorow's Task",
-                  text2: "Tommorow's tasks are shown here",
+                  text: "Tomorrow's Task",
+                  text2: "Tomorrow's tasks are shown here",
                   children: []),
               const HeightSpacer(height: 20),
-              const XpansionTile(
-                  text: "Tommorow's Task",
-                  text2: "Tommorow's tasks are shown here",
-                  children: []),
+              XpansionTile(
+                  text: DateTime.now()
+                      .add(const Duration(days: 2))
+                      .toString()
+                      .substring(5, 10),
+                  text2: "Day after tomorrow tasks",
+                  children: const []),
             ],
           ),
         ),
