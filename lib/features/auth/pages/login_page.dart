@@ -50,7 +50,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 16.w),
-              child: ReuseableText(
+              child: ReusableText(
                   text: 'Plese enter your phone number',
                   style: appStyle(
                     17,
@@ -82,7 +82,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             setState(() {});
                           });
                     },
-                    child: ReuseableText(
+                    child: ReusableText(
                         text: country.flagEmoji + country.phoneCode,
                         style: appStyle(18, Appconst.kBkDark, FontWeight.bold)),
                   ),

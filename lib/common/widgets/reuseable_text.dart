@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ReuseableText extends StatelessWidget {
+class ReusableText extends StatelessWidget {
   final String text;
   final TextStyle style;
-  const ReuseableText({super.key, required this.text, required this.style});
+  const ReusableText({super.key, required this.text, required this.style});
 
   @override
   Widget build(BuildContext context) {

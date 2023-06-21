@@ -45,12 +45,12 @@ class BottomTitles extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ReuseableText(
+                  ReusableText(
                     text: text,
                     style: appStyle(24, Appconst.kLight, FontWeight.bold),
                   ),
                   const HeightSpacer(height: 10),
-                  ReuseableText(
+                  ReusableText(
                     text: text2,
                     style: appStyle(12, Appconst.kLight, FontWeight.normal),
                   ),

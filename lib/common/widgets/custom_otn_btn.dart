@@ -35,7 +35,7 @@ class CustomOtlBtn extends StatelessWidget {
             border: Border.all(width: 1, color: color),
           ),
           child: Center(
-            child: ReuseableText(
+            child: ReusableText(
                 text: text, style: appStyle(18, color, FontWeight.bold)),
           ),
         ));

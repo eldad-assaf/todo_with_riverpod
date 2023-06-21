@@ -13,8 +13,8 @@ class TodoTile extends StatelessWidget {
   final String? start;
   final String? end;
   final Widget? editWidget;
+  final Widget? switcher;
   final void Function()? delete;
-
   final Color? color;
   const TodoTile({
     super.key,
@@ -25,6 +25,7 @@ class TodoTile extends StatelessWidget {
     this.end,
     this.editWidget,
     this.delete,
+    this.switcher,
   });
 
   @override
@@ -64,17 +65,17 @@ class TodoTile extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(8.h),
                     child: SizedBox(
-                      width: Appconst.kHeight,
+                      width: Appconst.kWidth * 0.6,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ReuseableText(
+                            ReusableText(
                               text: title ?? "Title of Todo",
                               style: appStyle(
                                   18, Appconst.kLight, FontWeight.bold),
                             ),
                             const HeightSpacer(height: 3),
-                            ReuseableText(
+                            ReusableText(
                               text: description ?? "Description of Todo",
                               style: appStyle(
                                   12, Appconst.kLight, FontWeight.bold),
@@ -97,7 +98,7 @@ class TodoTile extends StatelessWidget {
                                     color: Appconst.kBkDark,
                                   ),
                                   child: Center(
-                                    child: ReuseableText(
+                                    child: ReusableText(
                                       text: "$start | $end",
                                       style: appStyle(12, Appconst.kLight,
                                           FontWeight.normal),
@@ -124,6 +125,10 @@ class TodoTile extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 0.h),
+                child: switcher,
               )
             ],
           ),

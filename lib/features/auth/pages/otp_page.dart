@@ -31,7 +31,7 @@ class OtpPage extends StatelessWidget {
               ),
             ),
             const HeightSpacer(height: 26),
-            ReuseableText(
+            ReusableText(
               text: 'Enter your otp code',
               style: appStyle(18, Appconst.kLight, FontWeight.bold),
             ),

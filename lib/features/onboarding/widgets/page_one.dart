@@ -26,7 +26,7 @@ class PageOne extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ReuseableText(
+              ReusableText(
                 text: 'Todo With Riverpod',
                 style: appStyle(30, Appconst.kLight, FontWeight.w600),
               ),

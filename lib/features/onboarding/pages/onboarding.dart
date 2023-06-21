@@ -55,7 +55,7 @@ class _OnboardingState extends State<Onboarding> {
                         ),
                       ),
                       const WidthSpacer(width: 8),
-                      ReuseableText(
+                      ReusableText(
                           text: 'Skip',
                           style:
                               appStyle(16, Appconst.kLight, FontWeight.w500)),

@@ -40,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ReuseableText(
+                    ReusableText(
                         text: 'Dashboard',
                         style: appStyle(18, Appconst.kLight, FontWeight.bold)),
                     Container(
@@ -98,7 +98,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     color: Appconst.kLight,
                   ),
                   const WidthSpacer(width: 10),
-                  ReuseableText(
+                  ReusableText(
                     text: "Today's Tasks",
                     style: appStyle(18, Appconst.kLight, FontWeight.bold),
                   )
@@ -128,7 +128,7 @@ class _HomePageState extends ConsumerState<HomePage>
                       child: SizedBox(
                         width: Appconst.kHeight * 0.5,
                         child: Center(
-                          child: ReuseableText(
+                          child: ReusableText(
                               text: 'Pending',
                               style: appStyle(
                                   16, Appconst.kBkDark, FontWeight.bold)),
@@ -140,7 +140,7 @@ class _HomePageState extends ConsumerState<HomePage>
                         width: Appconst.kHeight * 0.5,
                         padding: EdgeInsets.only(left: 30.w),
                         child: Center(
-                          child: ReuseableText(
+                          child: ReusableText(
                               text: 'Completed',
                               style: appStyle(
                                   16, Appconst.kBkDark, FontWeight.bold)),
