@@ -163,10 +163,15 @@ class _HomePageState extends ConsumerState<HomePage>
                         color: Appconst.kBkLight,
                         height: Appconst.kHeight * 0.3,
                         child: ListView(
-                          children: const [
+                          children: [
                             TodoTile(
                               start: "03:00",
                               end: "05:00",
+                              switcher: Switch(
+                                  value: true,
+                                  onChanged: (value) {
+                                    
+                                  }),
                             )
                           ],
                         ),
