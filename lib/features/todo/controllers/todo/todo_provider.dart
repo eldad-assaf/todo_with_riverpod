@@ -61,4 +61,14 @@ class TodoState extends _$TodoState {
     }
     return dates;
   }
+
+  bool getStatus(Task data) {
+    bool? isCompleted;
+    if (data.isCompleted == 0) {
+      isCompleted = false;
+    } else {
+      isCompleted = true;
+    }
+    return isCompleted;
+  }
 }
