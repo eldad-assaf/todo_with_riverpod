@@ -1,3 +1,4 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,7 +12,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  static final defaultLightColorScheme =
+      ColorScheme.fromSwatch(primarySwatch: Colors.blue);
+
+  static final defaultDarkColorScheme = ColorScheme.fromSwatch(
+      brightness: Brightness.dark, primarySwatch: Colors.blue);
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -19,18 +25,26 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 825),
       minTextAdapt: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Todo With Riverpod!!!',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            scaffoldBackgroundColor: Appconst.kBkDark,
-            primarySwatch: Colors.blue,
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          ),
-          themeMode: ThemeMode.dark,
-          home: const HomePage(),
-        );
+        return DynamicColorBuilder(
+            builder: (lightColorSceheme, darkColorscheme) {
+          return MaterialApp(
+            title: 'Todo With Riverpod!!!',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              scaffoldBackgroundColor: Appconst.kBkDark,
+              primarySwatch: Colors.blue,
+              useMaterial3: true,
+              colorScheme: lightColorSceheme ?? defaultLightColorScheme,
+            ),
+            darkTheme: ThemeData(
+              colorScheme: darkColorscheme ?? defaultDarkColorScheme,
+              scaffoldBackgroundColor: Appconst.kBkDark,
+              useMaterial3: true,
+            ),
+            themeMode: ThemeMode.dark,
+            home: const HomePage(),
+          );
+        });
       },
     );
   }
