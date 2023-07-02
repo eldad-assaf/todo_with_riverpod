@@ -168,16 +168,7 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         color: Appconst.kBkLight,
                         height: Appconst.kHeight * 0.3,
-                        child: ListView(
-                          children: [
-                            TodoTile(
-                              start: "03:00",
-                              end: "05:00",
-                              switcher:
-                                  Switch(value: true, onChanged: (value) {}),
-                            )
-                          ],
-                        ),
+                        child: const TodayTasks(),
                       ),
                       Container(
                         color: Appconst.kGreen,
@@ -249,6 +240,22 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
         ),
       ),
+    );
+  }
+}
+
+class TodayTasks extends ConsumerWidget {
+  const TodayTasks({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView.builder(
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return Container();
+      },
     );
   }
 }
