@@ -6,6 +6,8 @@ import 'package:todo_with_riverpod/common/widgets/custom_otn_btn.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_text_field.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as picker;
 
 class AddTask extends ConsumerStatefulWidget {
   const AddTask({super.key});
@@ -45,6 +47,19 @@ class _AddTaskState extends ConsumerState<AddTask> {
             ),
             const HeightSpacer(height: 20),
             CustomOtlBtn(
+                onTap: () {
+                  picker.DatePicker.showDatePicker(context,
+                      showTitleActions: true,
+                      minTime: DateTime(2018, 3, 5),
+                      maxTime: DateTime(2019, 6, 7),
+                      theme: const picker.DatePickerTheme(
+                          doneStyle:
+                              TextStyle(color: Appconst.kGreen, fontSize: 16)),
+                      onChanged: (date) {},
+                      onConfirm: (date) {},
+                      currentTime: DateTime.now(),
+                      locale: picker.LocaleType.en);
+                },
                 width: Appconst.kWidth,
                 height: 52.h,
                 color: Appconst.kLight,
