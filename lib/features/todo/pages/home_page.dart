@@ -9,9 +9,12 @@ import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
 import 'package:todo_with_riverpod/common/widgets/width_spacer.dart';
+import 'package:todo_with_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:todo_with_riverpod/features/todo/controllers/xpansion_provider.dart';
 import 'package:todo_with_riverpod/features/todo/pages/add.dart';
 import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
+
+import '../widgets/today_tasks.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -28,6 +31,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(todoStateProvider.notifier).refresh();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -240,22 +244,6 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
         ),
       ),
-    );
-  }
-}
-
-class TodayTasks extends ConsumerWidget {
-  const TodayTasks({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Container();
-      },
     );
   }
 }
