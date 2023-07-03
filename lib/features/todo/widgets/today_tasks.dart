@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
 
@@ -28,6 +29,14 @@ class TodayTasks extends ConsumerWidget {
         return TodoTile(
           title: data.title,
           color: color,
+          delete: () =>
+              ref.read(todoStateProvider.notifier).deleteItem(data.id ?? 0),
+          editWidget: GestureDetector(
+            onTap: () {
+              
+            },
+            child: const Icon(MaterialCommunityIcons.circle_edit_outline),
+          ),
           switcher: Switch(
             value: isCompleted,
             onChanged: (value) {

@@ -15,6 +15,7 @@ import 'package:todo_with_riverpod/features/todo/pages/add.dart';
 import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
 
 import '../widgets/today_tasks.dart';
+import '../widgets/tomorrow_list.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -183,32 +184,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               const HeightSpacer(height: 20),
-              XpansionTile(
-                text: "Tomorrow's Task",
-                text2: "Tomorrow's tasks are shown here",
-                onExpansionChanged: (bool expanded) {
-                  ref.read(xpansionStateProvider.notifier).setStart(!expanded);
-                },
-                trailing: Padding(
-                  padding: EdgeInsets.only(right: 12.w),
-                  child: ref.watch(xpansionStateProvider)
-                      ? const Icon(
-                          AntDesign.circledown,
-                          color: Appconst.kLight,
-                        )
-                      : const Icon(
-                          AntDesign.closecircleo,
-                          color: Appconst.kBlueLight,
-                        ),
-                ),
-                children: [
-                  TodoTile(
-                    start: "03:00",
-                    end: "05:00",
-                    switcher: Switch(value: true, onChanged: (value) {}),
-                  )
-                ],
-              ),
+              const TommorowsList(),
               const HeightSpacer(height: 20),
               XpansionTile(
                   text: DateTime.now()
