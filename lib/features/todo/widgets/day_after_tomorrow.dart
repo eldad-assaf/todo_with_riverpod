@@ -16,9 +16,11 @@ class TommorowsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(todoStateProvider);
     var color = ref.read(todoStateProvider.notifier).getRandomColor();
-    String tomorrow = ref.watch(todoStateProvider.notifier).getTomorrow();
+    String dayAftertomorrow =
+        ref.watch(todoStateProvider.notifier).getTDayAfteromorrow();
     List<Task> tomorrowTasks = todos
-        .where((task) => task.isCompleted == 0 && task.date!.contains(tomorrow))
+        .where((task) =>
+            task.isCompleted == 0 && task.date!.contains(dayAftertomorrow))
         .toList();
 
     return XpansionTile(
