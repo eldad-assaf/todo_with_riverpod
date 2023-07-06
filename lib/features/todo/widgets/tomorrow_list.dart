@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_with_riverpod/features/todo/controllers/todo/todo_provider.dart';
+import 'package:todo_with_riverpod/features/todo/pages/update_task.dart';
 import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
 
 import '../../../common/models/task_model.dart';
+import '../../../common/utils/constants.dart';
 import '../../../common/widgets/expansion_tile.dart';
 import '../controllers/xpansion_provider.dart';
 
@@ -25,16 +27,16 @@ class TommorowsList extends ConsumerWidget {
       text: "Tomorrow's Task",
       text2: "Tomorrow's tasks are shown here",
       onExpansionChanged: (bool expanded) {
-        ref.read(xpansionStateProvider.notifier).setStart(!expanded);
+        ref.read(xpansionStateProvider.notifier).setStart(expanded);
       },
       trailing: Padding(
         padding: EdgeInsets.only(right: 12.w),
         child: ref.watch(xpansionStateProvider)
             ? const Icon(
-                AntDesign.circledown,
+                AntDesign.closecircleo,
               )
             : const Icon(
-                AntDesign.closecircleo,
+                AntDesign.circledown,
               ),
       ),
       children: [
@@ -48,7 +50,15 @@ class TommorowsList extends ConsumerWidget {
             delete: () =>
                 ref.read(todoStateProvider.notifier).deleteItem(todo.id ?? 0),
             editWidget: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                titles = todo.title.toString();
+                descs = todo.desc.toString();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => UpdateTask(
+                    id: todo.id ?? 0,
+                  ),
+                ));
+              },
               child: const Icon(MaterialCommunityIcons.circle_edit_outline),
             ),
             switcher: const SizedBox.shrink(),

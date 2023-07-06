@@ -59,7 +59,7 @@ class TodoState extends _$TodoState {
     return tommorow.toString().substring(0, 10);
   }
 
-  String getTDayAfteromorrow() {
+  String getDayAfterTomorrow() {
     DateTime tommorow = DateTime.now().add(const Duration(days: 2));
     return tommorow.toString().substring(0, 10);
   }

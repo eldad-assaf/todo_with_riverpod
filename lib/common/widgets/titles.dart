@@ -5,6 +5,7 @@ import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
 import 'package:todo_with_riverpod/common/widgets/width_spacer.dart';
+import 'package:todo_with_riverpod/features/todo/controllers/todo/todo_provider.dart';
 
 class BottomTitles extends StatelessWidget {
   final String text;
@@ -25,6 +26,8 @@ class BottomTitles extends StatelessWidget {
           children: [
             Consumer(
               builder: (context, ref, child) {
+                var color =
+                    ref.read(todoStateProvider.notifier).getRandomColor();
                 return Container(
                   height: 80,
                   width: 5,
@@ -34,7 +37,7 @@ class BottomTitles extends StatelessWidget {
                     ),
 
                     ///TODO: ADD DYNAMIC COLOR
-                    color: Appconst.kGreen,
+                    color: color,
                   ),
                 );
               },

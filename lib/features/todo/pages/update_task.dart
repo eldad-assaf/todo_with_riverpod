@@ -13,18 +13,16 @@ import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
 import 'package:todo_with_riverpod/features/todo/controllers/dates/dates_provider.dart';
 import 'package:todo_with_riverpod/features/todo/controllers/todo/todo_provider.dart';
 
-import '../../../common/models/task_model.dart';
-
-class AddTask extends ConsumerStatefulWidget {
-  const AddTask({super.key});
-
+class UpdateTask extends ConsumerStatefulWidget {
+  const UpdateTask({required this.id, super.key});
+  final int id;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AddTaskState();
 }
 
-class _AddTaskState extends ConsumerState<AddTask> {
-  final TextEditingController title = TextEditingController();
-  final TextEditingController desc = TextEditingController();
+class _AddTaskState extends ConsumerState<UpdateTask> {
+  final TextEditingController title = TextEditingController(text: titles);
+  final TextEditingController desc = TextEditingController(text: descs);
 
   @override
   Widget build(BuildContext context) {
@@ -119,17 +117,14 @@ class _AddTaskState extends ConsumerState<AddTask> {
                       scheduleDate.isNotEmpty &&
                       start.isNotEmpty &&
                       finish.isNotEmpty) {
-                    Task task = Task(
-                        title: title.text,
-                        desc: desc.text,
-                        isCompleted: 0,
-                        date: scheduleDate,
-                        startTime: start.substring(10, 16),
-                        endTime: finish.substring(10, 16),
-                        remind: 0,
-                        repeat: "yes");
-
-                    ref.read(todoStateProvider.notifier).addItem(task);
+                    ref.read(todoStateProvider.notifier).updateItem(
+                        widget.id,
+                        title.text,
+                        desc.text,
+                        0,
+                        scheduleDate,
+                        start.substring(10, 16),
+                        finish.substring(10, 16));
                     ref.read(dateStateProvider.notifier).setDate("");
                     ref.read(startTimeStateProvider.notifier).setStart("");
                     ref.read(finishTimeStateProvider.notifier).setStart("");

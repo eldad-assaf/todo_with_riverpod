@@ -4,15 +4,14 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_text_field.dart';
-import 'package:todo_with_riverpod/common/widgets/expansion_tile.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
 import 'package:todo_with_riverpod/common/widgets/width_spacer.dart';
 import 'package:todo_with_riverpod/features/todo/controllers/todo/todo_provider.dart';
-import 'package:todo_with_riverpod/features/todo/controllers/xpansion_provider.dart';
 import 'package:todo_with_riverpod/features/todo/pages/add.dart';
-import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
+import 'package:todo_with_riverpod/features/todo/widgets/completed_tasks.dart';
+import 'package:todo_with_riverpod/features/todo/widgets/day_after_tomorrow.dart';
 
 import '../widgets/today_tasks.dart';
 import '../widgets/tomorrow_list.dart';
@@ -176,8 +175,9 @@ class _HomePageState extends ConsumerState<HomePage>
                         child: const TodayTasks(),
                       ),
                       Container(
-                        color: Appconst.kGreen,
+                        color: Appconst.kBkLight,
                         height: Appconst.kHeight * 0.3,
+                        child: const CompletedTasks(),
                       )
                     ],
                   ),
@@ -186,36 +186,7 @@ class _HomePageState extends ConsumerState<HomePage>
               const HeightSpacer(height: 20),
               const TommorowsList(),
               const HeightSpacer(height: 20),
-              XpansionTile(
-                  text: DateTime.now()
-                      .add(const Duration(days: 2))
-                      .toString()
-                      .substring(5, 10),
-                  text2: "Day after tomorrow tasks",
-                  onExpansionChanged: (bool expanded) {
-                    ref
-                        .read(xpansionState0Provider.notifier)
-                        .setStart(!expanded);
-                  },
-                  trailing: Padding(
-                    padding: EdgeInsets.only(right: 12.w),
-                    child: ref.watch(xpansionState0Provider)
-                        ? const Icon(
-                            AntDesign.circledown,
-                            color: Appconst.kLight,
-                          )
-                        : const Icon(
-                            AntDesign.closecircleo,
-                            color: Appconst.kBlueLight,
-                          ),
-                  ),
-                  children: [
-                    TodoTile(
-                      start: "03:00",
-                      end: "05:00",
-                      switcher: Switch(value: true, onChanged: (value) {}),
-                    )
-                  ]),
+              const DayAfterTomorrow()
             ],
           ),
         ),

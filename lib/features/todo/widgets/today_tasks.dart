@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_with_riverpod/features/todo/pages/update_task.dart';
 import 'package:todo_with_riverpod/features/todo/widgets/todo_tile.dart';
 
 import '../../../common/models/task_model.dart';
+import '../../../common/utils/constants.dart';
 import '../controllers/todo/todo_provider.dart';
 
 class TodayTasks extends ConsumerWidget {
@@ -33,7 +35,13 @@ class TodayTasks extends ConsumerWidget {
               ref.read(todoStateProvider.notifier).deleteItem(data.id ?? 0),
           editWidget: GestureDetector(
             onTap: () {
-              
+              titles = data.title.toString();
+              descs = data.desc.toString();
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => UpdateTask(
+                  id: data.id ?? 0,
+                ),
+              ));
             },
             child: const Icon(MaterialCommunityIcons.circle_edit_outline),
           ),
@@ -41,13 +49,14 @@ class TodayTasks extends ConsumerWidget {
             value: isCompleted,
             onChanged: (value) {
               ref.read(todoStateProvider.notifier).markAsCompleted(
-                  data.id!,
-                  data.title!,
-                  data.desc!,
-                  data.isCompleted!,
-                  data.date!,
-                  data.startTime!,
-                  data.endTime!);
+                    data.id ?? 0,
+                    data.title!,
+                    data.desc!,
+                    1,
+                    data.date!,
+                    data.startTime!,
+                    data.endTime!,
+                  );
             },
           ),
           description: data.desc,
