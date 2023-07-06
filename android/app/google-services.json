@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "909749972047",
+    "project_id": "todo-with-riverpod",
+    "storage_bucket": "todo-with-riverpod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909749972047:android:44a774aac1462a06edce3a",
+        "android_client_info": {
+          "package_name": "com.example.todo_with_riverpod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909749972047-o030l9qt5b9si1qgvet8ct3e5l6oidpe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo_with_riverpod",
+            "certificate_hash": "575d697d0abc9618fe967a3548e1711c658f5769"
+          }
+        },
+        {
+          "client_id": "909749972047-ouihkrd0bc566hrchcm1hsrq3m2tpo27.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo_with_riverpod",
+            "certificate_hash": "9fd783cd78eb59632b354b704d94e6cd7e530976"
+          }
+        },
+        {
+          "client_id": "909749972047-scbacabrch1avsrpjq672cvgmc7pelrk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo_with_riverpod",
+            "certificate_hash": "8cf6ad1a115451094e1e5b199f6226a9bb82f215"
+          }
+        },
+        {
+          "client_id": "909749972047-jd2kkscabdqvok63k0v7vetklf5aarvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOBR_lsa7FXhDU8HW-ZvvDQRSLPGXwdxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909749972047-jd2kkscabdqvok63k0v7vetklf5aarvl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "909749972047-qe35hu9osht7v28j552qaekm0j2i5u87.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.todoWithRiverpod"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

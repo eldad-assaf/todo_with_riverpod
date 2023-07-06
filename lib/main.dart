@@ -1,11 +1,17 @@
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/features/todo/pages/home_page.dart';
-
-void main() {
+import 'package:todo_with_riverpod/firebase_options.dart';
+//com.googleusercontent.apps.909749972047-qe35hu9osht7v28j552qaekm0j2i5u87
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ProviderScope(child: MyApp()));
 }
 
