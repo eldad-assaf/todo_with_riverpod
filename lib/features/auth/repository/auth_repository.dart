@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -57,6 +59,7 @@ class AuthRepository {
         codeAutoRetrievalTimeout: (smsCodeId) {},
       );
     } on FirebaseAuth catch (e) {
+      log('FirebaseAuth exception : ${e.toString()}');
       showAlertDialog(context: context, message: e.toString());
     }
   }

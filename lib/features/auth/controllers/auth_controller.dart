@@ -1,13 +1,33 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_with_riverpod/features/auth/repository/auth_repository.dart';
 
-import '../../../common/models/user_model.dart';
-
-final userProvider = StateNotifierProvider<UserState, List<UserModel>>((ref) {
-  return UserState();
+final authControllerProvider = Provider((ref) {
+  final authRepository = ref.watch(authRepositoryProvider);
+  return AuthController(authRepository: authRepository);
 });
 
-class UserState extends StateNotifier<List<UserModel>> {
-  UserState() : super([]);
+class AuthController {
+  final AuthRepository authRepository;
 
-  
+  AuthController({required this.authRepository});
+
+  void verifyOtp({
+    required BuildContext context,
+    required String smsCodeId,
+    required String smsCode,
+    required bool mounted,
+  }) {
+    authRepository.verifyOtp(
+        context: context,
+        smsCodeId: smsCodeId,
+        smsCode: smsCode,
+        mounted: mounted);
+  }
+
+  void sendSms({required BuildContext context, required String phone}) {
+    authRepository.sentOtp(context: context, phone: phone);
+  }
 }

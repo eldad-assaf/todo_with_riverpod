@@ -6,10 +6,11 @@ import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_otn_btn.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
+import 'package:todo_with_riverpod/common/widgets/show_dialog.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
-import 'package:todo_with_riverpod/features/auth/pages/otp_page.dart';
 
 import '../../../common/widgets/custom_text_field.dart';
+import '../controllers/auth_controller.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -31,6 +32,20 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       displayName: "United States",
       displayNameNoCountryCode: "US",
       e164Key: "");
+
+  sendCodeToUser() {
+    if (phone.text.isEmpty) {
+      return showAlertDialog(
+          context: context, message: 'Please Enter Your Phone Number');
+    } else if (phone.text.length < 8) {
+      return showAlertDialog(
+          context: context, message: 'Your Phone Number Is Too Short');
+    } else {
+      ref.read(authControllerProvider).sendSms(
+          context: context, phone: '+${country.phoneCode}${phone.text}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +84,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       showCountryPicker(
                           context: context,
                           countryListTheme: CountryListThemeData(
-                              backgroundColor: Appconst.kLight,
+                              backgroundColor: Appconst.kGreyLight,
                               bottomSheetHeight: Appconst.kHeight * 0.6,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(
@@ -79,7 +94,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     Appconst.kRadius,
                                   ))),
                           onSelect: (code) {
-                            setState(() {});
+                            setState(() {
+                              country = code;
+                            });
                           });
                     },
                     child: ReusableText(
@@ -96,11 +113,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: CustomOtlBtn(
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const OtpPage(),
-                    )),
+                onTap: () => sendCodeToUser(),
                 width: Appconst.kWidth * 0.9,
                 height: Appconst.kHeight * 0.075,
                 color: Appconst.kBkDark,
