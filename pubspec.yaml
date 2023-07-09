@@ -19,6 +19,7 @@ dependencies:
   country_picker: ^2.0.20
   cupertino_icons: ^1.0.2
   dynamic_color: ^1.6.5
+  firebase_auth: ^4.6.3
   firebase_core: ^2.14.0
   flutter:
     sdk: flutter

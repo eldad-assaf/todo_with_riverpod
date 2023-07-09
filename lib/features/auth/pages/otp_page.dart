@@ -7,7 +7,9 @@ import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
 
 class OtpPage extends StatelessWidget {
-  const OtpPage({super.key});
+  final String smsCodeId;
+  final String phone;
+  const OtpPage({super.key, required this.smsCodeId, required this.phone});
 
   @override
   Widget build(BuildContext context) {
