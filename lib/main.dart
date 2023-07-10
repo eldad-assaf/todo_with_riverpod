@@ -57,7 +57,7 @@ class MyApp extends ConsumerWidget {
             ),
             themeMode: ThemeMode.dark,
             onGenerateRoute: Routes.onGenerateRoutes,
-            home: users.isNotEmpty ? const Onboarding() : const HomePage(),
+            home: users.isEmpty ? const Onboarding() : const HomePage(),
           );
         });
       },

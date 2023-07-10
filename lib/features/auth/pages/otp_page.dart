@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pinput/pinput.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
 import 'package:todo_with_riverpod/common/widgets/reuseable_text.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
+import 'package:todo_with_riverpod/features/auth/controllers/auth_controller.dart';
 
-class OtpPage extends StatelessWidget {
+class OtpPage extends ConsumerWidget {
   final String smsCodeId;
   final String phone;
   const OtpPage({super.key, required this.smsCodeId, required this.phone});
 
+  void verifyOtp(BuildContext context, WidgetRef ref, String smsCode) {
+    ref.read(authControllerProvider).verifyOtp(
+        context: context,
+        smsCodeId: smsCodeId,
+        smsCode: smsCode,
+        mounted: true);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -42,10 +52,14 @@ class OtpPage extends StatelessWidget {
               length: 6,
               showCursor: true,
               onCompleted: (value) {
-                if (value.length == 6) {}
+                if (value.length == 6) {
+                  return verifyOtp(context, ref, value);
+                }
               },
               onSubmitted: (value) {
-                if (value.length == 6) {}
+                if (value.length == 6) {
+                  return verifyOtp(context, ref, value);
+                }
               },
             )
           ],
