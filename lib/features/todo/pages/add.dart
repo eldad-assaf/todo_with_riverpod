@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_with_riverpod/common/helpers/notifications_helper.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_otn_btn.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_text_field.dart';
@@ -25,6 +26,24 @@ class AddTask extends ConsumerStatefulWidget {
 class _AddTaskState extends ConsumerState<AddTask> {
   final TextEditingController title = TextEditingController();
   final TextEditingController desc = TextEditingController();
+
+  late NotificationsHelper notifiHelper;
+  late NotificationsHelper controller;
+
+  @override
+  void initState() {
+    notifiHelper = NotificationsHelper(ref: ref);
+    Future.delayed(
+      const Duration(
+        seconds: 0,
+      ),
+      () {
+        controller = NotificationsHelper(ref: ref);
+      },
+    );
+    notifiHelper.initializeNotification();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +147,8 @@ class _AddTaskState extends ConsumerState<AddTask> {
                         endTime: finish.substring(10, 16),
                         remind: 0,
                         repeat: "yes");
-
+                    notifiHelper.scheduledNotification(
+                        days, hours, minutes, seconds, task);
                     ref.read(todoStateProvider.notifier).addItem(task);
                     ref.read(dateStateProvider.notifier).setDate("");
                     ref.read(startTimeStateProvider.notifier).setStart("");
