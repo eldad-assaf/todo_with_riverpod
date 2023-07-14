@@ -115,7 +115,7 @@ class NotificationsHelper {
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
         payload:
-            "${task.title} | ${task.desc} | ${task.startTime}| ${task.endTime}");
+            "${task.title}|${task.desc}|${task.date}|${task.startTime}|${task.endTime}");
   }
 
   void _configureSelectNotificationSubject() {

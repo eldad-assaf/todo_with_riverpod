@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -34,7 +32,6 @@ class _AddTaskState extends ConsumerState<AddTask> {
 
   @override
   void initState() {
-    log('initState');
     notifiHelper = NotificationsHelper(ref: ref);
 
     Future.delayed(const Duration(seconds: 0), () {
