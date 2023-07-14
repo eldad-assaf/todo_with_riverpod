@@ -8,11 +8,13 @@ import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_otn_btn.dart';
 import 'package:todo_with_riverpod/common/widgets/custom_text_field.dart';
 import 'package:todo_with_riverpod/common/widgets/hieght_spacer.dart';
+import 'package:todo_with_riverpod/common/widgets/show_dialog.dart';
 import 'package:todo_with_riverpod/common/widgets/text_style.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
     as picker;
 import 'package:todo_with_riverpod/features/todo/controllers/dates/dates_provider.dart';
 import 'package:todo_with_riverpod/features/todo/controllers/todo/todo_provider.dart';
+import 'package:todo_with_riverpod/features/todo/pages/home_page.dart';
 
 import '../../../common/models/task_model.dart';
 
@@ -26,21 +28,20 @@ class AddTask extends ConsumerStatefulWidget {
 class _AddTaskState extends ConsumerState<AddTask> {
   final TextEditingController title = TextEditingController();
   final TextEditingController desc = TextEditingController();
-
+  List<int> notification = [];
   late NotificationsHelper notifiHelper;
   late NotificationsHelper controller;
 
   @override
   void initState() {
+    log('initState');
     notifiHelper = NotificationsHelper(ref: ref);
-    Future.delayed(
-      const Duration(
-        seconds: 0,
-      ),
-      () {
-        controller = NotificationsHelper(ref: ref);
-      },
-    );
+
+    Future.delayed(const Duration(seconds: 0), () {
+      controller = NotificationsHelper(ref: ref);
+      controller.initializeNotification();
+    });
+
     notifiHelper.initializeNotification();
     super.initState();
   }
@@ -105,6 +106,10 @@ class _AddTaskState extends ConsumerState<AddTask> {
                         ref
                             .read(startTimeStateProvider.notifier)
                             .setStart(date.toString());
+
+                        notification = ref
+                            .read(startTimeStateProvider.notifier)
+                            .dates(date);
                       });
                     },
                     width: Appconst.kWidth * 0.4,
@@ -147,16 +152,26 @@ class _AddTaskState extends ConsumerState<AddTask> {
                         endTime: finish.substring(10, 16),
                         remind: 0,
                         repeat: "yes");
+
                     notifiHelper.scheduledNotification(
-                        days, hours, minutes, seconds, task);
+                        notification[0],
+                        notification[1],
+                        notification[2],
+                        notification[3],
+                        task);
                     ref.read(todoStateProvider.notifier).addItem(task);
                     ref.read(dateStateProvider.notifier).setDate("");
                     ref.read(startTimeStateProvider.notifier).setStart("");
                     ref.read(finishTimeStateProvider.notifier).setStart("");
 
-                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ));
                   } else {
-                    log('Failed to add task');
+                    showAlertDialog(
+                        context: context, message: 'Failed to add a task');
                   }
                 },
                 width: Appconst.kWidth,

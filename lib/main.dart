@@ -7,9 +7,9 @@ import 'package:todo_with_riverpod/common/models/user_model.dart';
 import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/features/auth/controllers/user_controller.dart';
 import 'package:todo_with_riverpod/features/onboarding/pages/onboarding.dart';
+import 'package:todo_with_riverpod/features/todo/pages/home_page.dart';
 import 'package:todo_with_riverpod/firebase_options.dart';
 import 'common/routes/routes.dart';
-import 'features/todo/pages/view_notifications.dart';
 
 //com.googleusercontent.apps.909749972047-qe35hu9osht7v28j552qaekm0j2i5u87
 void main() async {
@@ -57,8 +57,7 @@ class MyApp extends ConsumerWidget {
             ),
             themeMode: ThemeMode.dark,
             onGenerateRoute: Routes.onGenerateRoutes,
-            home:
-                users.isEmpty ? const Onboarding() : const NotificationsPage(),
+            home: users.isEmpty ? const Onboarding() : const HomePage(),
           );
         });
       },

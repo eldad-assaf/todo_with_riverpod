@@ -26,22 +26,24 @@ class NotificationsHelper {
       BehaviorSubject<String?>();
 
   initializeNotification() async {
-    const DarwinInitializationSettings initializationSettingsIOS =
+    requestIOSPermissions();
+    _configureLocalTimeZone();
+    _configureSelectNotificationSubject();
+    final DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
       requestSoundPermission: false,
       requestBadgePermission: false,
       requestAlertPermission: false,
-      onDidReceiveLocalNotification: null, //TODO : change
+      onDidReceiveLocalNotification: onDidRecieveLocalNotification,
     );
 
     const AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings(
-            "defaultIcon"); // from assets / need to add
+        AndroidInitializationSettings("bell"); // from assets / need to add
 
-    const InitializationSettings initializationSettings =
-        InitializationSettings(
-            android: androidInitializationSettings,
-            iOS: initializationSettingsIOS);
+    InitializationSettings initializationSettings = InitializationSettings(
+      android: androidInitializationSettings,
+      iOS: initializationSettingsIOS,
+    );
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
@@ -114,45 +116,45 @@ class NotificationsHelper {
         matchDateTimeComponents: DateTimeComponents.time,
         payload:
             "${task.title} | ${task.desc} | ${task.startTime}| ${task.endTime}");
+  }
 
-    void _configureSelectNotificationSubject() {
-      selectedNotificationSubject.stream.listen((String? payload) async {
-        var title = payload!.split('|')[0];
-        var body = payload.split('|')[1];
-        showDialog(
-          context: ref.context,
-          builder: (context) => CupertinoAlertDialog(
-            title: Text(title),
-            content: Text(
-              body,
-              textAlign: TextAlign.justify,
-              maxLines: 4,
-            ),
-            actions: [
-              CupertinoDialogAction(
-                isDestructiveAction: true,
-                child: const Text('Close'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              CupertinoDialogAction(
-                isDestructiveAction: true,
-                child: const Text('View'),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return NotificationsPage(
-                        payload: payload,
-                      );
-                    },
-                  ));
-                },
-              )
-            ],
+  void _configureSelectNotificationSubject() {
+    selectedNotificationSubject.stream.listen((String? payload) async {
+      var title = payload!.split('|')[0];
+      var body = payload.split('|')[1];
+      showDialog(
+        context: ref.context,
+        builder: (context) => CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(
+            body,
+            textAlign: TextAlign.justify,
+            maxLines: 4,
           ),
-        );
-      });
-    }
+          actions: [
+            CupertinoDialogAction(
+              isDestructiveAction: true,
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CupertinoDialogAction(
+              isDestructiveAction: true,
+              child: const Text('View'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return NotificationsPage(
+                      payload: payload,
+                    );
+                  },
+                ));
+              },
+            )
+          ],
+        ),
+      );
+    });
   }
 }

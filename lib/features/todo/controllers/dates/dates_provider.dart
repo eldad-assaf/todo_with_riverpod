@@ -27,7 +27,7 @@ class StartTimeState extends _$StartTimeState {
   List<int> dates(DateTime startDate) {
     DateTime now = DateTime.now();
     final difference = startDate.difference(now);
-    int days = difference.inDays % 60;
+    int days = difference.inDays;
     int hours = difference.inHours % 24;
     int minutes = difference.inMinutes % 60;
     int seconds = difference.inSeconds % 60;
