@@ -8,7 +8,6 @@ import 'package:todo_with_riverpod/common/utils/constants.dart';
 import 'package:todo_with_riverpod/features/auth/controllers/user_controller.dart';
 import 'package:todo_with_riverpod/features/onboarding/pages/onboarding.dart';
 import 'package:todo_with_riverpod/firebase_options.dart';
-
 import 'common/routes/routes.dart';
 import 'features/todo/pages/view_notifications.dart';
 
@@ -18,6 +17,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
