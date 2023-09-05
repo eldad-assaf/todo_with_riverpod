@@ -10,6 +10,14 @@ Some of the main features of Todo With Riverpod App includes:
 * Persisting the data with Sqlite
 * Utilizes Flutter's local notification system to provide timely reminders for tasks
 
+Some of the main features of Rick And Morty App includes:
+* Clean architecture for efficient code organization
+* Sign in with google or with an email/password
+* Fetching Data from Api (with search functionality)
+* Animations
+* Streamlined state management with The Bloc Pattern
+* Persisting the data with Hydrated BLoC
+
 <p float="left">
   <img src="onboarding.png" alt="" width="300" />
   <img src="phone.png" alt="" width="300" />
