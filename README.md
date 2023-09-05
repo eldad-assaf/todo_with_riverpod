@@ -9,3 +9,9 @@ Implements secure SMS verification for user authentication.
 Streamlined state management with The Riverpod 2.0 Pattern
 Persisting the data with Sqlite
 Utilizes Flutter's local notification system to provide timely reminders for tasks
+
+<p float="left">
+  <img src="onboarding.png" alt="" width="300" />
+  <img src="phone.png" alt="" width="300" />
+
+</p>
