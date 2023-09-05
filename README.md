@@ -1,16 +1,11 @@
-# todo_with_riverpod
+Todo With Riverpod 2.0
 
-A new Flutter project.
+This Flutter Todo App serves as a testament to my skills as a developer, highlighting my expertise in Flutter, including state management using Riverpod and SQLite database management. Please note that this app is intended solely for technical demonstration and is not published on app stores.
 
-## Getting Started
+Some of the main features of Todo With Riverpod App includes:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Clean architecture for efficient code organization
+Implements secure SMS verification for user authentication.
+Streamlined state management with The Riverpod 2.0 Pattern
+Persisting the data with Sqlite
+Utilizes Flutter's local notification system to provide timely reminders for tasks
