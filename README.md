@@ -4,19 +4,16 @@ This Flutter Todo App serves as a testament to my skills as a developer, highlig
 
 Some of the main features of Todo With Riverpod App includes:
 
-*Clean architecture for efficient code organization
-*Implements secure SMS verification for user authentication.
-*Streamlined state management with The Riverpod 2.0 Pattern
-*Persisting the data with Sqlite
-*Utilizes Flutter's local notification system to provide timely reminders for tasks
+* Clean architecture for efficient code organization
+* Implements secure SMS verification for user authentication.
+* Streamlined state management with The Riverpod 2.0 Pattern
+* Persisting the data with Sqlite
+* Utilizes Flutter's local notification system to provide timely reminders for tasks
 
 <p float="left">
   <img src="onboarding.png" alt="" width="300" />
   <img src="phone.png" alt="" width="300" />
+  <img src="create_task.png" alt="" width="300" />
   <img src="main1.png" alt="" width="300" />
   <img src="main2.png" alt="" width="300" />
-  <img src="create_task.png" alt="" width="300" />
-
-
-
 </p>
